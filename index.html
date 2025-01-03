@@ -3,9 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World</title>
+    <title>Interactive Web Page</title>
+    <style>
+        /* Base Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('default-bg.jpg'); /* Default background */
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        #change-bg {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 10px;
+            background: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* Center Button */
+        .open-modal-btn {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 20px;
+            font-size: 18px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70%;
+            height: 70%;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #333;
+            color: white;
+            padding: 10px;
+        }
+        .modal-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-image: url('modal-bg.jpg'); /* Default modal background */
+            background-size: cover;
+            background-position: center;
+        }
+        .modal-content input {
+            margin: 10px 0;
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .modal-content button {
+            padding: 10px 20px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            padding: 10px;
+            background: #f1f1f1;
+        }
+
+        /* Minimized Modal */
+        .minimized {
+            height: 50px !important;
+            width: 200px !important;
+            overflow: hidden;
+            bottom: 10px;
+            right: 10px;
+            position: fixed;
+            transform: none !important;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello, World!</h1>
+    <!-- Background Change Button -->
+    <button id="change-bg">Change Background</button>
+
+    <!-- Center Button -->
+    <button class="open-modal-btn">Click Here</button>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <div class="modal-header">
+            <span>Modal Window</span>
+            <div>
+                <button id="minimize-btn">-</button>
+                <button id="close-btn">X</button>
+            </div>
+        </div>
+        <div class="modal-content">
+            <h2>Welcome</h2>
+            <input type="text" id="text-holder" placeholder="Enter login">
+            <button id="modal-next-btn">Next</button>
+        </div>
+        <div class="modal-footer">
+            <button id="modal-change-bg">Change Modal Background</button>
+        </div>
+    </div>
+
+    <script>
+        // Elements
+        const changeBgButton = document.getElementById('change-bg');
+        const modal = document.getElementById('modal');
+        const openModalButton = document.querySelector('.open-modal-btn');
+        const closeModalButton = document.getElementById('close-btn');
+        const minimizeModalButton = document.getElementById('minimize-btn');
+        const modalChangeBgButton = document.getElementById('modal-change-bg');
+        const modalNextButton = document.getElementById('modal-next-btn');
+        const textHolder = document.getElementById('text-holder');
+        let pageIndex = 1;
+
+        // Change Background
+        changeBgButton.addEventListener('click', () => {
+            const url = prompt("Enter the URL of the background image:");
+            if (url) {
+                document.body.style.backgroundImage = `url(${url})`;
+            }
+        });
+
+        // Open Modal
+        openModalButton.addEventListener('click', () => {
+            modal.style.display = 'flex';
+        });
+
+        // Close Modal
+        closeModalButton.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        // Minimize Modal
+        minimizeModalButton.addEventListener('click', () => {
+            modal.classList.toggle('minimized');
+        });
+
+        // Change Modal Background
+        modalChangeBgButton.addEventListener('click', () => {
+            const url = prompt("Enter the URL of the modal background image:");
+            if (url) {
+                document.querySelector('.modal-content').style.backgroundImage = `url(${url})`;
+            }
+        });
+
+        // Next Button
+        modalNextButton.addEventListener('click', () => {
+            pageIndex++;
+            document.querySelector('.modal-content').style.backgroundImage = `url('page-${pageIndex}.jpg')`; // Change background per page
+            textHolder.value = ''; // Clear text holder
+        });
+    </script>
 </body>
 </html>
