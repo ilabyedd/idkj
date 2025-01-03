@@ -9,22 +9,11 @@
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background-image: url('default-bg.jpg'); /* Default background */
+            background-image: url('default-bg.jpg'); /* Replace 'default-bg.jpg' with your main background image path */
             background-size: cover;
             background-position: center;
             height: 100vh;
             overflow: hidden;
-        }
-        #change-bg {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            padding: 10px;
-            background: #333;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
         }
 
         /* Center Button */
@@ -71,7 +60,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-image: url('modal-bg.jpg'); /* Default modal background */
+            background-image: url('modal-bg.jpg'); /* Replace 'modal-bg.jpg' with your modal background image path */
             background-size: cover;
             background-position: center;
         }
@@ -111,9 +100,6 @@
     </style>
 </head>
 <body>
-    <!-- Background Change Button -->
-    <button id="change-bg">Change Background</button>
-
     <!-- Center Button -->
     <button class="open-modal-btn">Click Here</button>
 
@@ -131,30 +117,17 @@
             <input type="text" id="text-holder" placeholder="Enter login">
             <button id="modal-next-btn">Next</button>
         </div>
-        <div class="modal-footer">
-            <button id="modal-change-bg">Change Modal Background</button>
-        </div>
     </div>
 
     <script>
         // Elements
-        const changeBgButton = document.getElementById('change-bg');
         const modal = document.getElementById('modal');
         const openModalButton = document.querySelector('.open-modal-btn');
         const closeModalButton = document.getElementById('close-btn');
         const minimizeModalButton = document.getElementById('minimize-btn');
-        const modalChangeBgButton = document.getElementById('modal-change-bg');
         const modalNextButton = document.getElementById('modal-next-btn');
         const textHolder = document.getElementById('text-holder');
         let pageIndex = 1;
-
-        // Change Background
-        changeBgButton.addEventListener('click', () => {
-            const url = prompt("Enter the URL of the background image:");
-            if (url) {
-                document.body.style.backgroundImage = `url(${url})`;
-            }
-        });
 
         // Open Modal
         openModalButton.addEventListener('click', () => {
@@ -171,18 +144,11 @@
             modal.classList.toggle('minimized');
         });
 
-        // Change Modal Background
-        modalChangeBgButton.addEventListener('click', () => {
-            const url = prompt("Enter the URL of the modal background image:");
-            if (url) {
-                document.querySelector('.modal-content').style.backgroundImage = `url(${url})`;
-            }
-        });
-
         // Next Button
         modalNextButton.addEventListener('click', () => {
             pageIndex++;
-            document.querySelector('.modal-content').style.backgroundImage = `url('page-${pageIndex}.jpg')`; // Change background per page
+            document.querySelector('.modal-content').style.backgroundImage = `url('page-${pageIndex}.jpg')`; 
+            // Replace 'page-<number>.jpg' with your desired background image paths for each step
             textHolder.value = ''; // Clear text holder
         });
     </script>
