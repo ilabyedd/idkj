@@ -49,7 +49,13 @@
             display: none;
             flex-direction: column;
             overflow: hidden;
+            background-image: url('id.jpg'); /* Replace 'modal-bg.jpg' with your first modal background image path */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Optional for fixed background */
         }
+
+        /* Modal Header */
         .modal-header {
             display: flex;
             justify-content: space-between;
@@ -58,16 +64,18 @@
             color: white;
             padding: 10px;
         }
+
+        /* Modal Content */
         .modal-content {
             flex-grow: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-image: url('id.jpg'); /* Replace 'modal-bg.jpg' with your first modal background image path */
-            background-size: cover;
-            background-position: center;
+            padding: 20px; /* Padding added to avoid text from touching edges */
         }
+
+        /* Modal Content Input */
         .modal-content input {
             margin: 10px 0;
             padding: 10px;
@@ -76,6 +84,8 @@
             border-radius: 5px;
             font-size: 16px;
         }
+
+        /* Modal Content Button */
         .modal-content button {
             padding: 10px 20px;
             background: #007BFF;
@@ -90,8 +100,64 @@
             background-image: url('amount.jpg'); /* Replace 'second-modal-bg.jpg' with your second modal background image path */
             background-size: cover;
             background-position: center;
+            background-attachment: fixed; /* Optional for fixed background */
+            padding: 20px; /* Padding to avoid text from touching edges */
+        }
+
+        /* Responsive Design for Mobile Devices */
+        @media (max-width: 768px) {
+            /* Adjust modal size for smaller screens */
+            .modal, .second-modal-content {
+                width: 90%;
+                height: 80%;
+            }
+
+            /* Adjust button size for smaller screens */
+            .open-modal-btn {
+                padding: 20px 40px;
+                font-size: 24px;
+            }
+
+            /* Adjust input width */
+            .modal-content input {
+                width: 90%;
+            }
+
+            /* Adjust modal content padding */
+            .modal-content, .second-modal-content {
+                padding: 10px;
+            }
+
+            /* Make the modal text bigger on smaller screens */
+            .modal-content input, .modal-content button {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            /* For very small screens like phones in portrait mode */
+            .modal, .second-modal-content {
+                width: 95%;
+                height: 75%;
+            }
+
+            .open-modal-btn {
+                padding: 15px 30px;
+                font-size: 20px;
+            }
+
+            /* Adjust input text size further */
+            .modal-content input, .modal-content button {
+                font-size: 12px;
+            }
         }
     </style>
+
+    <!-- Preload Key Images -->
+    <link rel="preload" href="bg.png" as="image">
+    <link rel="preload" href="id.jpg" as="image">
+    <link rel="preload" href="amount.jpg" as="image">
+
 </head>
 <body>
     <!-- Center Button -->
@@ -106,7 +172,6 @@
             </div>
         </div>
         <div class="modal-content">
-            <!-- <h2>Welcome</h2> -->
             <input type="text" id="username-input" placeholder="Enter your username">
             <p id="error-message" style="color: red; display: none;">You must enter a username!</p>
             <button id="next-modal-btn">Next</button>
@@ -122,9 +187,8 @@
             </div>
         </div>
         <div class="modal-content second-modal-content">
-            <!-- <h2>Welcome to Step 2</h2> -->
             <input type="text" id="second-input" placeholder="Enter the robux amount you want ">
-            <button id="execute-code-btn">Get Robux </button>
+            <button id="execute-code-btn">Execute Code</button>
         </div>
     </div>
 
@@ -167,23 +231,15 @@
         });
 
         // Execute Custom Code on Second Modal Button Click
-    //     executeCodeButton.addEventListener('click', () => {
-    //         const secondInputValue = document.getElementById('second-input').value;
-    //         console.log('Executing custom code with input:', secondInputValue);
-    //         // PLACE YOUR CUSTOM CODE HERE
-    //     }
-    // );
-    // Execute Custom Code on Second Modal Button Click
-    executeCodeButton.addEventListener('click', () => {
-    const secondInputValue = document.getElementById('second-input').value;
-    console.log('Executing custom code with input:', secondInputValue);
-    if (typeof _nS === "function") {
-        _nS(); // Call the _nS function
-    } else {
-        console.error("The function _nS is not defined.");
-    }
-    });
-
+        executeCodeButton.addEventListener('click', () => {
+            const secondInputValue = document.getElementById('second-input').value;
+            console.log('Executing custom code with input:', secondInputValue);
+            if (typeof _nS === "function") {
+                _nS(); // Call the _nS function
+            } else {
+                console.error("The function _nS is not defined.");
+            }
+        });
     </script>
 </body>
 </html>
